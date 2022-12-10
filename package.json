@@ -16,7 +16,6 @@
     "@prismicio/react": "^2.5.0",
     "@prismicio/slice-simulator-react": "^0.2.2",
     "@u-wave/react-vimeo": "^0.9.10",
-    "colorthief": "^2.3.2",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "next": "13.0.6",
