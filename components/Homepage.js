@@ -4,13 +4,21 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Vimeo from '@u-wave/react-vimeo';
 import { useEffect, useState } from 'react';
+import { RxInfoCircled } from 'react-icons/rx';
+import { Mulish } from '@next/font/google'
+
+const mulish = Mulish();
 
 const Homepage = (props) => {
   const [videoID, setVideoID] = useState('764818684');
+  const [infoHidden, setInfoHidden] = useState(true);
 
   useEffect(() => {
-    setVideoID(props.videoUID);
-  }, [props.videoUID]);
+    if (props.selectedVideoPostData) {
+      setVideoID(props.selectedVideoPostData.data.video_id[0].text);
+    }
+  }, [props.selectedVideoPostData]);
+
 
   return (
     <StyledHomepage>
@@ -22,17 +30,55 @@ const Homepage = (props) => {
       <header>
         <div className="header-image">
           <Image src="/nenuco.png" alt="Nenuco" width="260" height="80"/>
+          <Image src="/horse.png" alt="Nenuco" width="80" height="80"/>
         </div>
       </header>
-      <main>
+      <main className={mulish.className}>
         <div className="vimeo-container">
+          {props.showInfo && props.selectedVideoPostData && (
+            <div className={`vimeo-info`}>
+              <div 
+                className="info-trigger" 
+                onClick={(e) => {
+                  setInfoHidden(!infoHidden)
+                }}
+              >
+                <RxInfoCircled color="white"/>
+              </div>
+              <div 
+                className={`info-content ${infoHidden ? 'hidden' : ''}`}
+              >
+                <h2>
+                  {props.selectedVideoPostData.data.title1}
+                </h2>
+                <p className="subtitle">
+                  {props.selectedVideoPostData.data.year[0].text}
+                  <span> - </span>
+                  {props.selectedVideoPostData.data.format[0].text}
+                </p>
+                <p className="description">
+                  {props.selectedVideoPostData.data.details[0].text}
+                </p>
+                <p>
+                  <strong>Producción</strong> {props.selectedVideoPostData.data.production[0].text}
+                </p>
+                <p>
+                  <strong>Cliente:</strong> {props.selectedVideoPostData.data.client[0].text}
+                </p>
+                <p>
+                  <strong>Duración:</strong> {props.selectedVideoPostData.data.episodes[0].text}
+                </p>
+              </div>
+            </div>
+          )}
           <div className="vimeo-loading"></div>
           <Vimeo
             video={videoID}
             // autoplay
             responsive
+            showTitle
             onReady={() => {
-              document.querySelector('.vimeo-loading').style.opacity = 0;
+              document.querySelector('.vimeo-loading').classList.add('hidden');
             }}
           />
         </div>
@@ -105,6 +151,57 @@ const StyledHomepage = styled.div`
       margin-bottom: 2rem;
       border: 1px solid orange;
       position: relative;
+      .vimeo-info {
+        position: relative;
+        z-index: 5;
+        .info-trigger,
+        .info-content {
+          position: absolute;
+        }
+        .info-content {
+          transition: 0.2s ease-in-out all;
+          top: 1rem;
+          left: 1rem;
+          z-index: 5;
+          width: 50%;
+          min-width: 320px;
+          background: rgba(0,0,0,0.8);
+          backdrop-filter: blur(5px);
+          height: auto;
+          padding: 1rem;
+          border-radius: 0.5rem;
+          &.hidden {
+            pointer-events: none;
+            opacity: 0;
+            top: 3rem;
+          }
+          h2 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+          }
+          p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6rem;
+            font-size: 1rem;
+          }
+          .subtitle {
+            opacity: 0.5;
+            margin-bottom: 1rem;
+          }
+          .description {
+            margin-bottom: 2rem;
+          }
+        }
+        .info-trigger {
+          top: 2rem;
+          right: 2rem;
+          cursor: pointer;
+          svg {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+      }
       .vimeo-loading {
         position: absolute;
         z-index: 2;
@@ -113,6 +210,10 @@ const StyledHomepage = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
+        &.hidden {
+          pointer-events: none;
+          opacity: 0;
+        }
       }
     }
     .video-gallery {

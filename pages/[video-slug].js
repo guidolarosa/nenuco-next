@@ -7,6 +7,7 @@ import { createClient } from '../prismicio';
 
 export default function VideoPost(props) {
   const [selectedVideoPostData, setSelectedVideoPostData] = useState(null);
+  console.log(selectedVideoPostData)
   useEffect(() => {
     const videoPost = props.videoPosts.find((e) => {
       if (e.uid == props.videoUID) {
@@ -17,8 +18,8 @@ export default function VideoPost(props) {
   }, [props.videoPosts, props.videoUID]);
 
   return (
-    <Homepage {...props} videoUID={
-        selectedVideoPostData && selectedVideoPostData.data.video_id[0].text}>
+    <Homepage {...props} selectedVideoPostData={selectedVideoPostData}
+        showInfo={true}>
     </Homepage>
   )
 }
