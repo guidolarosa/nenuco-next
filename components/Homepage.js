@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link';
 import styled from 'styled-components';
 import Vimeo from '@u-wave/react-vimeo';
-import ColorThief from 'colorthief/dist/color-thief.mjs'
 import { useEffect, useState } from 'react';
 
 const Homepage = (props) => {
