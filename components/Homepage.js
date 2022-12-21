@@ -91,6 +91,7 @@ const Homepage = (props) => {
           </Link>
         )}
         <section className="video-gallery">
+          <h2>Galería</h2>
           <ul>
             {props.videoPosts.map((e, i) => {
               return (
@@ -109,9 +110,11 @@ const Homepage = (props) => {
         </section>
       </main>
       <footer>
+          <h2 className="team-title">¿QUÉ HACEMOS?</h2>
           <p className="footer-copy">
             Hacemos <strong>cine</strong> y <strong>TV</strong>,  tanto <strong>documentales</strong> como <strong>ficción</strong>, institucionales y contenidos web, desarrollando ideas y conceptos o brindando servicios para terceros.
           </p>
+          <h2 className="team-title">Team Nenuco</h2>
           <section className="team">
             <div className="team-member">
               <strong>Guillermo Ruiz</strong>
@@ -181,8 +184,9 @@ const StyledHomepage = styled.div`
     .vimeo-container {
       margin-bottom: 2rem;
       border: 3px solid hsl(54deg 90% 49%);
-      border-radius: 0.25rem;
+      border-radius: 0.5rem;
       position: relative;
+      overflow: hidden;
       .vimeo-info {
         position: relative;
         z-index: 5;
@@ -307,7 +311,15 @@ const StyledHomepage = styled.div`
       }
     }
     .video-gallery {
-      margin-bottom: 4rem;
+      margin-bottom: 10rem;
+      margin-top: 7rem;
+      h2 {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+      }
       &:hover {
         li {
           opacity: 0.5;
@@ -327,17 +339,28 @@ const StyledHomepage = styled.div`
     padding-bottom: 5rem;
     .footer-copy {
       font-size: 2rem;
-      margin: 10rem 0;
+      margin: 0 0 10rem;
       line-height: 3rem;
+      opacity: 0.7;
+    }
+    .team-title {
+      font-size: 5rem;
+      /* opacity: 0.7; */
+      margin-bottom: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
     }
     .team {
       display: flex;
-      margin: 2rem 0;
+      margin: 2rem 0 8rem;
       justify-content: space-between;
       .team-member {
         padding: 2rem;
         border: 3px solid hsl(54deg 90% 49%);
         width: calc(50% - 1rem);
+        border-radius: 0.5rem;
+        background: hsla(54deg 90% 49% / 20%);
         strong {
           font-size: 2rem;
         }
