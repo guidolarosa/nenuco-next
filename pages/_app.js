@@ -3,6 +3,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { repositoryName } from '../prismicio'
 import Link from 'next/link'
 import GlobalStyle from '../styles/globalStyles'
+import './../styles/globals.css'
 
 const MyApp = ({ Component, pageProps }) => {
   return (

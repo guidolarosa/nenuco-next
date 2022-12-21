@@ -34,7 +34,7 @@ const Homepage = (props) => {
         </div>
       </header>
       <main className={mulish.className}>
-        <div className="vimeo-container">
+        <section className="vimeo-container">
           {props.showInfo && props.selectedVideoPostData && (
             <div className={`vimeo-info`}>
               <div 
@@ -81,7 +81,15 @@ const Homepage = (props) => {
               document.querySelector('.vimeo-loading').classList.add('hidden');
             }}
           />
-        </div>
+        </section>
+        {props.showTrailerBanner && (
+          <Link href="/">
+            <section className="featured-banner">
+              <h2>AGUA SUCIA</h2>
+              <p>Mirá el trailer</p>
+            </section>
+          </Link>
+        )}
         <section className="video-gallery">
           <ul>
             {props.videoPosts.map((e, i) => {
@@ -101,11 +109,33 @@ const Homepage = (props) => {
         </section>
       </main>
       <footer>
-
+          <p className="footer-copy">
+            Hacemos <strong>cine</strong> y <strong>TV</strong>,  tanto <strong>documentales</strong> como <strong>ficción</strong>, institucionales y contenidos web, desarrollando ideas y conceptos o brindando servicios para terceros.
+          </p>
+          <section className="team">
+            <div className="team-member">
+              <strong>Guillermo Ruiz</strong>
+              <p>Producción Ejecutiva / Guión</p>
+            </div>
+            <div className="team-member">
+              <strong>Diego Crespo</strong>
+              <p>Dirección / Realización / Guión</p>
+            </div>
+          </section>
+          <section className="contact">
+            <a href="mailto:contacto@nenuco.com">contacto@nenuco.com</a>
+          </section>
+          <section className="copyright">
+            Nenuco. Copyright { new Date().getFullYear() }
+          </section>
       </footer>
     </StyledHomepage>
   )
 };
+
+Homepage.defaultProps = {
+  showTrailerBanner: true
+}
 
 const StyledVideoPostLink = styled(Link)`
   li {
@@ -135,7 +165,8 @@ const StyledVideoPostLink = styled(Link)`
 
 const StyledHomepage = styled.div`
   header,
-  main {
+  main,
+  footer {
     max-width: 1020px;
     margin: 0 auto;
   }
@@ -149,7 +180,8 @@ const StyledHomepage = styled.div`
   main {
     .vimeo-container {
       margin-bottom: 2rem;
-      border: 1px solid orange;
+      border: 3px solid hsl(54deg 90% 49%);
+      border-radius: 0.25rem;
       position: relative;
       .vimeo-info {
         position: relative;
@@ -216,6 +248,64 @@ const StyledHomepage = styled.div`
         }
       }
     }
+    .featured-banner {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bookos';
+      color: black;
+      border-radius: 0.25rem;
+      background-image: url('./prision.png');
+      background-position: center;
+      position: relative;
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        top: -3px;
+        left: -3px;
+        width: calc(100%);
+        height: calc(100%);
+        pointer-events: none;
+        border-radius: 0.5rem;
+        border: 3px solid hsl(54deg 90% 49%);
+        opacity: 0;
+        transition: 0.2s ease-in-out all;
+      }
+      &:hover {
+        opacity: 1 !important;
+        /* box-shadow: 0 0 20px 2px ${props => props.colorDominant}; */
+        /* border: 3px solid hsl(54deg 90% 49%); */
+        /* transform: scale(1.05); */
+        z-index: 2;
+      }
+      &:active {
+        transform: scale(1);
+        transition-duration: 0;
+      }
+      h2 {
+        color: hsl(54deg 90% 49%);
+        margin-bottom: 0rem;
+        font-size: 4rem;
+        font-weight: 200;
+        font-family: 'Bell';
+        text-shadow: 3px 5px 10px rgba(0,0,0,0.3);
+      }
+      p {
+        text-shadow: 0 0px 10px rgba(0,0,0,0.3);
+        color: white;
+        font-size: 1.4rem;
+        letter-spacing: 0.3rem;
+        text-transform: uppercase;
+      }
+    }
     .video-gallery {
       margin-bottom: 4rem;
       &:hover {
@@ -231,6 +321,39 @@ const StyledHomepage = styled.div`
         grid-row-gap: 1.5rem;
         flex-wrap: wrap;
       }
+    }
+  }
+  footer {
+    padding-bottom: 5rem;
+    .footer-copy {
+      font-size: 2rem;
+      margin: 10rem 0;
+      line-height: 3rem;
+    }
+    .team {
+      display: flex;
+      margin: 2rem 0;
+      justify-content: space-between;
+      .team-member {
+        padding: 2rem;
+        border: 3px solid hsl(54deg 90% 49%);
+        width: calc(50% - 1rem);
+        strong {
+          font-size: 2rem;
+        }
+        p {
+          opacity: 0.7;
+        }
+      }
+    }
+    .contact a {
+      color: hsl(54deg 90% 49%);
+    }
+    .contact,
+    .copyright {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
     }
   }
 `;

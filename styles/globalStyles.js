@@ -9,7 +9,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: black;
     color: white;
-    font-family: 'Arial';
+    font-family: 'Fira Sans';
+  }
+  a {
+    text-decoration: none;
   }
 `;
 

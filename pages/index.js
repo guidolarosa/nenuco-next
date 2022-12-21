@@ -1,9 +1,9 @@
 import { createClient } from '../prismicio';
-import Homepage from './../components/Homepage';
+import Homepage from '../components/Homepage';
 
 const Home = (props) => {
   return (
-    <Homepage {...props} />
+    <Homepage {...props} showTrailerBanner={false} />
   )
 }
 
