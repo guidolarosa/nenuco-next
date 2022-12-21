@@ -183,8 +183,8 @@ const StyledHomepage = styled.div`
   main {
     .vimeo-container {
       margin-bottom: 2rem;
-      border: 3px solid hsl(54deg 90% 49%);
-      border-radius: 0.5rem;
+      border: 1px solid gray;
+      /* border-radius: 0.5rem; */
       position: relative;
       overflow: hidden;
       .vimeo-info {
