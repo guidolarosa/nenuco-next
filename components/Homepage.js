@@ -5,9 +5,6 @@ import styled from 'styled-components';
 import Vimeo from '@u-wave/react-vimeo';
 import { useEffect, useState } from 'react';
 import { RxInfoCircled } from 'react-icons/rx';
-import { Mulish } from '@next/font/google'
-
-const mulish = Mulish();
 
 const Homepage = (props) => {
   const [videoID, setVideoID] = useState('764818684');
@@ -28,12 +25,14 @@ const Homepage = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
-        <div className="header-image">
-          <Image src="/nenuco.png" alt="Nenuco" width="260" height="80"/>
-          <Image src="/horse.png" alt="Nenuco" width="80" height="80"/>
-        </div>
+        <Link href="/">
+          <div className="header-image">
+            <Image src="/nenuco.png" alt="Nenuco" width="260" height="80"/>
+            <Image src="/horse.png" alt="Nenuco" width="80" height="80"/>
+          </div>
+        </Link>
       </header>
-      <main className={mulish.className}>
+      <main>
         <section className="vimeo-container">
           {props.showInfo && props.selectedVideoPostData && (
             <div className={`vimeo-info`}>
@@ -163,6 +162,9 @@ const StyledVideoPostLink = styled(Link)`
       transform: scale(1);
       transition-duration: 0;
     }
+    @media screen and (max-width: 720px) {
+      height: 70vh;
+    }
   }
 `
 
@@ -172,6 +174,9 @@ const StyledHomepage = styled.div`
   footer {
     max-width: 1020px;
     margin: 0 auto;
+    @media screen and (max-width: 1040px) {
+      max-width: calc(100% - 36px);
+    }
   }
   header {
     margin: 2rem auto;
@@ -183,10 +188,13 @@ const StyledHomepage = styled.div`
   main {
     .vimeo-container {
       margin-bottom: 2rem;
-      border: 1px solid gray;
       /* border-radius: 0.5rem; */
       position: relative;
       overflow: hidden;
+      @media screen and (max-width: 720px) {
+       /* height: 40vh; */
+        /* margin-top: 8rem; */
+      }
       .vimeo-info {
         position: relative;
         z-index: 5;
@@ -294,6 +302,9 @@ const StyledHomepage = styled.div`
         transform: scale(1);
         transition-duration: 0;
       }
+      @media screen and (max-width: 720px) {
+        height: 20rem;
+      }
       h2 {
         color: hsl(54deg 90% 49%);
         margin-bottom: 0rem;
@@ -301,6 +312,9 @@ const StyledHomepage = styled.div`
         font-weight: 200;
         font-family: 'Bell';
         text-shadow: 3px 5px 10px rgba(0,0,0,0.3);
+        @media screen and (max-width: 720px) {
+          font-size: 3rem
+        }
       }
       p {
         text-shadow: 0 0px 10px rgba(0,0,0,0.3);
@@ -308,17 +322,26 @@ const StyledHomepage = styled.div`
         font-size: 1.4rem;
         letter-spacing: 0.3rem;
         text-transform: uppercase;
+        @media screen and (max-width: 720px) {
+          font-size: 1.2rem
+        }
       }
     }
     .video-gallery {
       margin-bottom: 10rem;
       margin-top: 7rem;
+      @media screen and (max-width: 720px) {
+        margin-top: 3rem;
+      }
       h2 {
         font-size: 5rem;
         margin-bottom: 2rem;
         font-weight: 800;
         letter-spacing: 0.2rem;
         text-transform: uppercase;
+        @media screen and (max-width: 720px) {
+          font-size: 3rem;
+        }
       }
       &:hover {
         li {
@@ -332,6 +355,10 @@ const StyledHomepage = styled.div`
         grid-column-gap: 1rem;
         grid-row-gap: 1.5rem;
         flex-wrap: wrap;
+        @media screen and (max-width: 720px) {
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
@@ -342,6 +369,9 @@ const StyledHomepage = styled.div`
       margin: 0 0 10rem;
       line-height: 3rem;
       opacity: 0.7;
+      @media screen and (max-width: 720px) {
+        font-size: 1.8rem;
+      }
     }
     .team-title {
       font-size: 5rem;
@@ -350,17 +380,28 @@ const StyledHomepage = styled.div`
       font-weight: 800;
       letter-spacing: 0.2rem;
       text-transform: uppercase;
+      @media screen and (max-width: 720px) {
+        font-size: 3rem;
+      }
     }
     .team {
       display: flex;
       margin: 2rem 0 8rem;
       justify-content: space-between;
+      @media screen and (max-width: 720px) {
+        flex-direction: column;
+        margin: 0 0 2rem;
+      }
       .team-member {
         padding: 2rem;
         border: 3px solid hsl(54deg 90% 49%);
         width: calc(50% - 1rem);
         border-radius: 0.5rem;
         background: hsla(54deg 90% 49% / 20%);
+        @media screen and (max-width: 720px) {
+          width: 100%;
+          margin-bottom: 2rem;
+        }
         strong {
           font-size: 2rem;
         }
