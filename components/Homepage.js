@@ -80,6 +80,30 @@ const Homepage = (props) => {
               document.querySelector('.vimeo-loading').classList.add('hidden');
             }}
           />
+          {props.selectedVideoPostData && (
+            <section className="vimeo-mobile-info">
+              <h2>
+                {props.selectedVideoPostData.data.title1}
+              </h2>
+              <p className="subtitle">
+                {props.selectedVideoPostData.data.year[0].text}
+                <span> - </span>
+                {props.selectedVideoPostData.data.format[0].text}
+              </p>
+              <p className="description">
+                {props.selectedVideoPostData.data.details[0].text}
+              </p>
+              <p>
+                <strong>Producción</strong> {props.selectedVideoPostData.data.production[0].text}
+              </p>
+              <p>
+                <strong>Cliente:</strong> {props.selectedVideoPostData.data.client[0].text}
+              </p>
+              <p>
+                <strong>Duración:</strong> {props.selectedVideoPostData.data.episodes[0].text}
+              </p>
+            </section>
+          )}
         </section>
         {props.showTrailerBanner && (
           <Link href="/">
@@ -90,7 +114,7 @@ const Homepage = (props) => {
           </Link>
         )}
         <section className="video-gallery">
-          <h2>Galería</h2>
+          {/* <h2>Galería</h2> */}
           <ul>
             {props.videoPosts.map((e, i) => {
               return (
@@ -109,11 +133,11 @@ const Homepage = (props) => {
         </section>
       </main>
       <footer>
-          <h2 className="team-title">¿QUÉ HACEMOS?</h2>
+          {/* <h2 className="team-title">¿QUÉ HACEMOS?</h2>
           <p className="footer-copy">
             Hacemos <strong>cine</strong> y <strong>TV</strong>,  tanto <strong>documentales</strong> como <strong>ficción</strong>, institucionales y contenidos web, desarrollando ideas y conceptos o brindando servicios para terceros.
-          </p>
-          <h2 className="team-title">Team Nenuco</h2>
+          </p> */}
+          {/* <h2 className="team-title">Team Nenuco</h2> */}
           <section className="team">
             <div className="team-member">
               <strong>Guillermo Ruiz</strong>
@@ -195,9 +219,29 @@ const StyledHomepage = styled.div`
        /* height: 40vh; */
         /* margin-top: 8rem; */
       }
+      .vimeo-mobile-info {
+        margin-top: 2rem;
+        background: rgba(255,255,255,0.1);
+        padding: 1rem;
+        display: none;
+        @media screen and (max-width: 720px) {
+          display: block;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          margin-bottom: 1.2rem;
+          line-height: 1.8rem;
+          font-size: 0.9rem;
+        }
+      }
       .vimeo-info {
         position: relative;
         z-index: 5;
+        @media screen and (max-width: 720px) {
+          display: none;
+        }
         .info-trigger,
         .info-content {
           position: absolute;
